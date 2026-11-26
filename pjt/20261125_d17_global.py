@@ -16,7 +16,7 @@ led = Pin(LED_PIN, Pin.OUT, value=OFF_VALUE)
 button = Pin(BUTTON_PIN, Pin.IN, Pin.PULL_UP)
 
 def ratio_control():
-    global ratio, on_time, off_time, PERIOD
+    global ratio, on_time, off_time
     ratio = levels[index]
     on_time = PERIOD * ratio
     off_time = PERIOD - on_time
@@ -34,7 +34,7 @@ while True :
     if button.value() == PRESSED_VALUE:
         if not was_pressed:
             index = index + 1
-            if index < 4:
+            if index > 4:
                 index = 0
                 
     if button.value() == PRESSED_VALUE:
@@ -44,3 +44,4 @@ while True :
 
     ratio_control()
     led_controler()
+
